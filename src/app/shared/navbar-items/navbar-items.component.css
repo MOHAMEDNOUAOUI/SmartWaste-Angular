@@ -1,0 +1,13 @@
+.active {
+    color: #87c15c;
+    animation: transaprancy 700ms ease-in-out forwards;
+}
+
+@keyframes transaprancy {
+    0%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+}

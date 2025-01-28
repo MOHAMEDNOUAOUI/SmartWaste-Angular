@@ -1,0 +1,45 @@
+.changeBackground {
+    animation: backgrounds 300ms ease-in-out forwards;
+}
+
+
+@keyframes backgrounds {
+    0%{
+        background-color: rgba(255, 255, 255, 0);
+    }
+    100%{
+        background-color: rgb(255, 255, 255);
+    }
+}
+
+
+/* .bg{
+    z-index: 2;
+}
+
+
+.bg::before {
+    content: "";
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    left: 2.5rem;
+    background-color: #1b2812;
+    z-index: 1;
+}
+
+.bg.changeBackground::before {
+    animation: backgrounds 700ms ease-in-out forwards;
+} */
+
+
+
+/* 
+@keyframes backgrounds {
+    0%{
+        width: 4rem;
+    }
+    100%{
+        width: 95%;
+    }
+} */
