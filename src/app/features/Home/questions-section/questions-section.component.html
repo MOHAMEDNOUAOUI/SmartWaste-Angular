@@ -1,0 +1,76 @@
+<div class="w-screen h-fit py-32 flex items-center font-Inter flex-col gap-16">
+    <h3 class="text-5xl font-bold">Frequently asked questions</h3>
+    <div class="flex gap-4 w-full px-40">
+        <!-- Left Side -->
+        <div class="left-side flex flex-col gap-8">
+            <!-- Question 1 -->
+            <app-question-holder
+                class="" 
+                [question]="'What is Smart Waste Management?'" 
+                [text]="'Smart waste management uses technology to monitor and optimize waste collection processes for better efficiency and sustainability.'" 
+                [icon]="'matWater'">
+            </app-question-holder>
+    
+            <!-- Question 2 -->
+            <app-question-holder 
+                class=""
+                [question]="'How can I report a full dumpster?'" 
+                [text]="'You can report a full dumpster by simply clicking on the report button and providing its location.'" 
+                [icon]="'matAdUnits'">
+            </app-question-holder>
+    
+            <!-- Question 3 -->
+            <app-question-holder 
+                class=""
+                [question]="'How does Smart Waste Management help the environment?'" 
+                [text]="'Smart waste management reduces pollution, optimizes waste collection, and promotes recycling to contribute to a cleaner, healthier environment.'" 
+                [icon]="'matHelp'">
+            </app-question-holder>
+    
+            <!-- Question 4 -->
+            <app-question-holder
+                class=""
+                [question]="'Can I suggest improvements for waste management in my area?'" 
+                [text]="'Yes, you can submit suggestions and feedback directly through the platform to help improve local waste management efforts.'" 
+                [icon]="'matQuestionAnswer'">
+            </app-question-holder>
+        </div>
+    
+        <!-- Right Side -->
+        <div class="right-side flex flex-col gap-8">
+            <!-- Question 5 -->
+            <app-question-holder
+                class="" 
+                [question]="'What happens after I report a waste issue?'" 
+                [text]="'Once reported, the system alerts local authorities or waste management teams to take immediate action.'" 
+                [icon]="'matReport'">
+            </app-question-holder>
+    
+            <!-- Question 6 -->
+            <app-question-holder 
+                class=""
+                [question]="'Why is waste management important?'" 
+                [text]="'Efficient waste management helps reduce environmental pollution, supports recycling efforts, and contributes to cleaner, safer communities.'" 
+                [icon]="'matLabelImportant'">
+            </app-question-holder>
+    
+            <!-- Question 7 -->
+            <app-question-holder 
+                class=""
+                [question]="'How can I track the waste collection process?'" 
+                [text]="'You can track waste collection status through our systems real-time tracking feature, which shows when your reported issue is being addressed.'" 
+                [icon]="'matTrackChanges'">
+            </app-question-holder>
+    
+            <!-- Question 8 -->
+            <app-question-holder 
+                class=""
+                [question]="'Is there a fee for reporting waste issues?'" 
+                [text]="'No, reporting waste issues through our platform is completely free of charge for all users.'" 
+                [icon]="'matFaceRetouchingNatural'">
+            </app-question-holder>
+        </div>
+    </div>
+    
+    
+</div>

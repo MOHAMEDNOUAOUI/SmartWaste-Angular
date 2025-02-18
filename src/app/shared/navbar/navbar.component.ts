@@ -4,10 +4,12 @@ import { NavigationComponent } from "../navigation/navigation.component";
 import {NgIcon, provideIcons} from '@ng-icons/core';
 import {matRecycling , matLinkedCamera} from '@ng-icons/material-icons/baseline'
 import { CommonModule } from '@angular/common';
+import { LogoComponent } from "../../components/logo/logo.component";
+import { AuthLogoComponent } from "../../components/Auth/auth-logo/auth-logo.component";
 
 @Component({
   selector: 'app-navbar',
-  imports: [NavigationComponent , NgIcon , CommonModule],
+  imports: [NavigationComponent, CommonModule, AuthLogoComponent, NavbarItemsComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
   viewProviders:[provideIcons({matRecycling , matLinkedCamera})]

@@ -1,0 +1,34 @@
+.between {
+    height: 7rem;
+    width: 2px;
+    background: rgb(142,176,118);
+    background: linear-gradient(180deg, rgba(142,176,118,0) 0%, rgba(215,215,215,1) 50%, rgba(125,167,96,0) 100%); 
+}
+
+.test-container {
+    perspective: 2000px;
+}
+
+.testing {
+    position: relative;
+    transform: rotateX(45deg);
+    background: rgb(125,167,96);
+    border: solid white 1px;
+    border-top: 0px;
+    background: linear-gradient(180deg, rgba(125,167,96,0) 38%, rgba(215, 215, 215, 0.623) 100%); 
+    border-bottom: 12px solid rgba(128, 128, 128, 0.354);
+    border-bottom-right-radius: 10%;
+    border-bottom-left-radius: 10%;
+
+    animation: testing 1300ms ease-out forwards;
+    /* box-shadow: rgba(154, 154, 154, 0.4) 0px 2px, rgba(53, 53, 53, 0.3) 0px 10px, rgba(52, 52, 52, 0.2) 0px 15px, rgba(0, 0, 0, 0.1) 0px 20px, rgba(0, 0, 0, 0.05) 0px 25px; */
+}
+
+@keyframes testing {
+    0%{
+        height: 0;
+    }
+    100%{
+        height: 90%;
+    }
+}

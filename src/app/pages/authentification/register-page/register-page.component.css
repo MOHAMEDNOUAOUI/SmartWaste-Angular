@@ -1,0 +1,15 @@
+.register {
+    position: relative;
+    animation: anim 700ms ease-in-out forwards;
+}
+
+@keyframes anim {
+    0%{
+        opacity: 0;
+        right: -10%;
+    }
+    100%{
+        opacity: 1;
+        right: 0;
+    }
+}

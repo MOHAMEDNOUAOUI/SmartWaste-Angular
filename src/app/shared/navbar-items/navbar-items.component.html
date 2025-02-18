@@ -1,12 +1,15 @@
-<ul class="flex gap-5 text-xl font-medium font-Roboto uppercase text-secondary">
-    <li [class.active]="isActiveRoute('/')"  class="cursor-pointer">
-        <a routerLink="/">Home</a>
+<ul class="flex gap-12 text-base text-secondary">
+    <li>
+        <app-auth-logo></app-auth-logo>
     </li>
-    <li [class.active]="isActiveRoute('/Solutions')" class="cursor-pointer">
+    <li [class.active]="isActiveRoute('/About')"  class="cursor-pointer">
+        <a routerLink="/">Why smartwaste</a>
+    </li>
+    <li [class.active]="isActiveRoute('/Feature')" class="cursor-pointer">
         <a routerLink="/Solutions">Solutions</a>
     </li>
-    <li [class.active]="isActiveRoute('/Company')" class="cursor-pointer">
-        <a routerLink="/Company">Company</a>
+    <li [class.active]="isActiveRoute('/Solutions')" class="cursor-pointer">
+        <a routerLink="/Solutions">About</a>
     </li>
     <li [class.active]="isActiveRoute('/Contact')" class="cursor-pointer">
         <a routerLink="/Contact">Contact</a>

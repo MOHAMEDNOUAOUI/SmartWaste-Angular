@@ -6,11 +6,15 @@ module.exports = {
       colors:{
         primary:"#3e6626",
         secondary:"#1b2812",
-        lightgreen:"#87c15c"
+        lightgreen:"#87c15c",
+        darkgreen:"#1b2812",
       },
       fontFamily:{
         IBM:['IBM Plex Mono'],
-        Roboto:['Roboto']
+        Roboto:['Roboto'],
+        EB:['EB Garamond'],
+        Bricolage:['Bricolage Grotesque'],
+        Inter:['Inter']
       }
     },
   },

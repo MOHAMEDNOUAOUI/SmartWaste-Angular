@@ -1,8 +1,34 @@
-<div class="w-screen h-screen p-10  flex items-center justify-between">
+<!-- <div class="w-screen h-screen p-10  flex items-center justify-between">
 <div class="w-2/4 flex flex-col gap-6">
     <h1 class="text-7xl w-full font-bold font-IBM text-primary">Revolutionizing Waste Management: Smarter , Greener Cleaner</h1>
     <p class="font-Roboto text-secondary ms-2 text-xl">Empowering communities with smart, efficient waste collection solutions. We simplify the process, ensuring cleaner cities and a greener future</p>
     <button class="uppercase w-2/12 bg-primary text-white p-3 font-IBM">Contact Us</button>
 </div>
- <img src="./Car.png" alt="">
+ <img src="./Jabitor.png" alt="">
+</div> -->
+
+
+<div class="w-screen min-h-screen relative flex items-center flex-col font-Inter">
+    <!-- <img src="./big.jpg" class="absolute z-0 w-full h-full opacity-15" alt=""> -->
+    <div class="w-full h-3/4 flex justify-center items-center relative -top-12">
+        <div class="BigCircle h-[35rem] w-[35rem] rounded-full absolute bor border flex justify-center items-center">
+            <div class="SmallCircle h-[28rem] w-[28rem] rounded-full absolute z-10 bor border"></div>
+        </div>
+        <div class="Smallest h-[21rem] w-[21rem] rounded-full absolute z-10 bor border bgg2"></div>
+        <div class="Smallest1 h-[14rem] w-[14rem] rounded-full absolute z-10 bor border"></div>
+    </div>
+
+    <div class="absolute w-full bg h-1/4 flex flex-col gap-2 items-center z-20  top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+        
+        <h1 *ngIf="isRendred" class="text1 text-7xl text-gray-950 text-center font-Bricolage font-bold">
+            One Place for All <br> Your Waste Solutions
+        </h1>
+        <p *ngIf="isRendred" class="text2 w-2/6 text-lg text-primary text-center">One place for all your waste management needs. Streamline the process, reduce waste, and build a cleaner future. Together, we can make waste management more efficient and sustainable for everyone</p>
+
+        <div *ngIf="isRendred" class="flex gap-4 mt-4">
+            <button class="button1 rounded-lg py-2 px-4 text-white bg-secondary">Get Started</button>
+            <button class="button2 rounded-lg border border-gray-300 py-2 px-4">See Details</button>
+        </div>
+    </div>    
 </div>
+

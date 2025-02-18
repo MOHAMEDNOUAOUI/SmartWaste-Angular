@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { AuthLogoComponent } from "../../components/Auth/auth-logo/auth-logo.component";
 
 @Component({
   selector: 'app-navbar-items',
-  imports: [CommonModule , RouterModule],
+  imports: [CommonModule, RouterModule, AuthLogoComponent],
   templateUrl: './navbar-items.component.html',
   styleUrl: './navbar-items.component.css'
 })

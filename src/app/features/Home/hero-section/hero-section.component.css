@@ -1,0 +1,179 @@
+:host{
+    width: 100vw;
+    min-height: 100vh;
+}
+
+.bor {
+    border-radius: 50%;
+    border: 1px solid transparent;
+    background: linear-gradient(white, white) padding-box, 
+                linear-gradient(180deg, rgba(204,215,195,1) 0%, rgba(125,167,96,0) 100%) border-box;
+}
+
+.BigCircle {
+    background: rgb(225,225,225);
+    background: linear-gradient(180deg, rgba(225,225,225,1) 7%, rgba(125,167,96,0) 44%);  
+animation:BigCircle 1300ms ease-in-out forwards;
+position: relative;
+}
+
+@keyframes BigCircle {
+    0%{
+        opacity: 0;
+        left: -2%;
+    }
+    100%{
+        opacity: 1;
+        left: 0;
+    }
+}
+
+
+.SmallCircle{
+    animation: SmallCircle 1500ms ease-in-out forwards;
+    background: rgb(27,40,18);
+    background: linear-gradient(180deg, rgba(27, 40, 18, 0.235) 0%, rgba(125,167,96,0) 69%); 
+    position: relative;
+}
+@keyframes SmallCircle {
+    0%{
+        opacity: 0;
+        right: -2%;
+    }
+    100%{
+        opacity: 1;
+        right: 0;
+    }
+}
+
+.Smallest{
+    animation:Smallest 1700ms ease-in forwards;
+    background-color: white;
+}
+@keyframes Smallest {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.Smallest1{
+    animation: Smallest1 10000ms ease-out forwards;
+    background-color: white;
+}
+
+@keyframes Smallest1 {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+.bgg2{
+    background: rgb(225,225,225);
+    background: radial-gradient(circle, rgba(125,167,96,0) 57%, rgba(204,215,195,1) 100%); 
+}
+
+
+
+
+
+
+/* text hero */
+.text1 {
+    position: relative;
+    animation:text1 2400ms ease-out forwards;
+}
+.text2 {
+    position: relative;
+    animation: text2 800ms ease-in-out forwards;
+}
+@keyframes text1 {
+    0%{
+        left: 3%;
+        opacity: 0;
+    }
+    100%{
+        left: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes text2 {
+    0%{
+        opacity: 0;
+        bottom: -20%;
+    }
+    100%{
+        opacity: 1;
+        bottom: 0;
+    }
+}
+
+
+
+
+.button1{
+    animation: button 600ms ease-in-out forwards;
+    position: relative;
+}
+
+.button2{
+    animation: button 800ms ease-in-out forwards;
+    position: relative;
+}
+
+@keyframes button {
+    0%{
+        opacity: 0;
+        bottom: -100%;
+    }
+    100%{
+        opacity: 1;
+        bottom: 0;
+    }
+}
+
+
+
+
+.test-container {
+    perspective: 2000px;
+}
+
+.testing {
+    position: relative;
+    transform: rotateX(45deg);
+    background: rgb(125,167,96);
+    border: solid white 1px;
+    border-top: 0px;
+    background: linear-gradient(180deg, rgba(125,167,96,0) 38%, rgba(215, 215, 215, 0.623) 100%); 
+    border-bottom: 12px solid rgba(128, 128, 128, 0.354);
+    border-bottom-right-radius: 10%;
+    border-bottom-left-radius: 10%;
+
+    animation: testing 1300ms ease-out forwards;
+    /* box-shadow: rgba(154, 154, 154, 0.4) 0px 2px, rgba(53, 53, 53, 0.3) 0px 10px, rgba(52, 52, 52, 0.2) 0px 15px, rgba(0, 0, 0, 0.1) 0px 20px, rgba(0, 0, 0, 0.05) 0px 25px; */
+}
+
+@keyframes testing {
+    0%{
+        height: 0;
+    }
+    100%{
+        height: 90%;
+    }
+}
+/* 
+.card{
+    border: solid white 1px;
+    box-shadow: rgba(154, 154, 154, 0.4) 10px 10px;
+    position: relative;
+}
+ */
+

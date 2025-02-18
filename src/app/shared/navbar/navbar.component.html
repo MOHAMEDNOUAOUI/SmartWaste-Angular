@@ -1,7 +1,7 @@
-<header [ngClass]="{'changeBackground':isScrolled}" class="bg fixed px-10 top-0 w-screen flex items-center justify-between min-h-16 p-3 bg-transparent font-Roboto">
-   <app-navigation></app-navigation>
-   <div class="Icons z-10 flex gap-3 items-center">
-    <ng-icon class="text-2xl text-primary cursor-pointer" name="matRecycling"></ng-icon>
-    <ng-icon name="matLinkedCamera" class="text-2xl block md:hidden text-secondary cursor-pointer"></ng-icon>
+<header [ngClass]="{'changeBackground':isScrolled}" class="bg fixed font-Inter px-10 top-0 w-screen flex items-center justify-between min-h-16 p-3 bg-transparent z-[3000]">
+   <app-navbar-items></app-navbar-items>
+   <div class="Icons w-1/6 z-10 flex gap-3 items-center justify-end">
+   <button >Get Started</button>
+   <button class="bg-primary w-9 h-9 rounded-full"></button>
    </div>
 </header>
