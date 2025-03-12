@@ -1,0 +1,15 @@
+.card {
+    animation: movein 700ms ease-in-out forwards;
+    position: relative;
+}
+
+@keyframes movein {
+    0%{
+        left: -10%;
+        opacity: 0;
+    }
+    100%{
+        left: 0;
+        opacity: 1;
+    }
+}

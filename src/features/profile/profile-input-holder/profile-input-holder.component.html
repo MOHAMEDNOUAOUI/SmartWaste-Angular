@@ -1,0 +1,14 @@
+<div class="w-full flex flex-col gap-4" *ngIf="user$ | async as user">
+    <div class="topside flex flex-col gap-4">
+        <div class="flex flex-wrap">
+            <app-input-profile [icon]="'matAttachEmail'" [title]="'Mail Address'" [data]="user.email"></app-input-profile>
+            <app-input-profile [icon]="'matPhoneAndroid'" [title]="'Phone Number'" [data]="user.created_at"></app-input-profile>
+        </div>
+        <div class="flex flex-wrap">
+            <app-input-profile [icon]="'matCake'" [title]="'Age'" [data]="'03 September 2000'"></app-input-profile>
+        </div>
+    </div>
+    <div class="bottomside flex gap-3 flex-col border-t pt-4">
+        <app-input-profile [icon]="'matAttachEmail'" [title]="'Mail Address'" [data]="user.email"></app-input-profile>
+    </div>
+</div>

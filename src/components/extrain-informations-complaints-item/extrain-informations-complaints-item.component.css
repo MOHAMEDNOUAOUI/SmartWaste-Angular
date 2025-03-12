@@ -1,0 +1,12 @@
+.module {
+    animation: movein 500ms ease-in-out forwards;
+}
+
+@keyframes movein {
+    0%{
+        right: -100%;
+    }
+    100%{
+        right: 0.75rem;
+    }
+}

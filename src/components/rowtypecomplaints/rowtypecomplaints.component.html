@@ -1,0 +1,4 @@
+<div class="w-full max-h-full rounded-lg flex flex-col gap-2" *ngIf="complaintsList">
+    <app-rowtypefilter [count]="complaintsList!.length"  [color]="color" [Icon]="Icon" [type]="type"></app-rowtypefilter>
+    <app-complaints [data]="complaintsList"></app-complaints>
+</div>

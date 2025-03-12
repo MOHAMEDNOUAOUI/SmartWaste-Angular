@@ -1,0 +1,34 @@
+<div class="flex border border-gray-300 p-1 rounded-md gap-3 bg-gray-100 text-gray-400">
+    <div class="border-r flex gap-3 px-2">
+        <p class="flex items-center gap-1 cursor-pointer transform duration-300" 
+           routerLink="/Dashboard/Inbox/tasks"  
+           [ngClass]="{'bg-white p-1 px-2 text-blue-500 rounded-md': isActive('/Dashboard/Inbox/tasks')}">
+            <ng-icon name="matAppsOutline"></ng-icon>
+            <span>Tasks</span>
+        </p>
+    
+        <p class="flex items-center gap-1 cursor-pointer transform duration-300" 
+           routerLink="/Dashboard/Inbox/complaints" 
+           [ngClass]="{'bg-white p-1 px-2 text-blue-500 rounded-md': isActive('/Dashboard/Inbox/complaints')}">
+            <ng-icon name="matLineWeightOutline"></ng-icon>
+            <span>Complaints</span>
+        </p>
+    </div>
+    
+    <p class="flex items-center gap-1 cursor-pointer transform duration-300" (click)="changeType('spread')" [ngClass]="{'bg-white p-1 px-2 text-blue-500 rounded-md': active=='spread'}">
+        <ng-icon name="matAppsOutline"></ng-icon>
+        <span>Spreadsheet</span>
+    </p>
+    <p class="flex items-center gap-1 cursor-pointer transform duration-300" (click)="changeType('list')" [ngClass]="{'bg-white p-1 px-2 text-blue-500 rounded-md': active=='list'}">
+        <ng-icon name="matLineWeightOutline"></ng-icon>
+        <span>List</span>
+    </p>
+    <p class="flex items-center gap-1 cursor-pointer transform duration-300" (click)="changeType('table')" [ngClass]="{'bg-white p-1 px-2 text-blue-500 rounded-md': active=='table'}">
+        <ng-icon name="matCalendarMonthOutline"></ng-icon>
+        <span>Table</span>
+    </p>
+    <p class="flex items-center gap-1 cursor-pointer transform duration-300" (click)="changeType('time')" [ngClass]="{'bg-white p-1 px-2 text-blue-500 rounded-md': active=='time'}">
+        <ng-icon name="matTimelapseOutline"></ng-icon>
+        <span>Timeline</span>
+    </p>
+</div>

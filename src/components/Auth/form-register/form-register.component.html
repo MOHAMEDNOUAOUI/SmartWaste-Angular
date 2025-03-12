@@ -1,0 +1,41 @@
+<div class="w-full flex flex-col gap-4 font-Inter">
+    <form [formGroup]="registerForm" (ngSubmit)="register()" class="flex flex-col gap-4">
+      <div>
+        <app-form-input 
+          [icon]="'heroUser'" 
+          [text]="'Name'" 
+          [type]="'text'" 
+          formControlName="username">
+        </app-form-input>
+        <span *ngIf="submitted && f['username'].errors?.['required']" class="text-red-500">Firstname is required.</span>
+        <span *ngIf="submitted && f['username'].errors?.['minlength']" class="text-red-500">Minimum 2 characters required.</span>
+      </div>
+  
+      <div>
+        <app-form-input 
+          [icon]="'matMailOutline'" 
+          [text]="'Email'" 
+          [type]="'email'" 
+          formControlName="email">
+        </app-form-input>
+        <span *ngIf="submitted && f['email'].errors?.['required']" class="text-red-500">Email is required.</span>
+        <span *ngIf="submitted && f['email'].errors?.['email']" class="text-red-500">Invalid email format.</span>
+      </div>
+  
+      <div>
+        <app-form-input 
+          [icon]="'matLockOutline'" 
+          [text]="'Password'" 
+          [type]="'password'" 
+          formControlName="password">
+        </app-form-input>
+        <span *ngIf="submitted && f['password'].errors?.['required']" class="text-red-500">Password is required.</span>
+        <span *ngIf="submitted && f['password'].errors?.['minlength']" class="text-red-500">Minimum 6 characters required.</span>
+      </div>
+  
+      <button type="submit" class="bg-lightgreen p-3 text-white rounded-lg text-sm cursor-pointer w-full">
+        Sign up
+      </button>
+    </form>
+  </div>
+  

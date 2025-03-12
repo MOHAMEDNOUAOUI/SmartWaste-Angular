@@ -1,0 +1,47 @@
+<div class="w-full cursor-pointer card p-2 rounded-md h-full bg-white flex flex-col gap-2">
+    <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1">
+                
+                    @switch (complaint.priority) {
+                        @case (1) {
+                            <div class="bg-red-200 text-red-600 text-xs p-1 px-2 rounded-md">
+                                high
+                            </div>
+                        }
+                        @case (2) {
+                            <div class="bg-yellow-200 text-yellow-600 text-xs p-1 px-2 rounded-md">
+                                Medium
+                            </div>
+                        }
+                        @case (3) {
+                            <div class="bg-blue-200 text-blue-600 text-xs p-1 px-2 rounded-md">
+                                Low
+                            </div>
+                        }
+                    }
+
+                <div class="bg-orange-300 text-orange-600 text-xs p-1 rounded-md">
+                    <p>{{complaint.status}}</p>
+                </div>
+            </div>
+            <div>
+                <ng-icon class="cursor-pointer text-gray-400" name="cssMenuLeft"></ng-icon>
+            </div>
+    </div>
+    <div class="pb-2 border-b border-gray-300">
+        <h3 class="text-gray-900 text-xl font-semibold truncate">{{complaint.comment}}</h3>
+        <p class="text-gray-500 truncate">{{complaint.description}}</p>
+    </div>
+    <div class="flex justify-between items-center">
+        <div class="w-full flex items-center gap-1 text-gray-500 text-sm">
+            <ng-icon name="matDateRangeOutline"></ng-icon>
+            <p class="">{{ complaint.created_at| date: 'MMM d, yyyy' }}</p>
+        </div>
+        <span class="w-full h-0.5 bg-gray-600"></span>
+        <div class="w-full flex justify-end items-center gap-1 text-gray-500 text-sm">
+            <ng-icon name="matDateRangeOutline"></ng-icon>
+            <p class="">{{ complaint.resolved_at| date: 'MMM d, yyyy' }}</p>
+        </div>
+        
+    </div>
+</div>

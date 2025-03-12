@@ -1,0 +1,48 @@
+<div class="flex items-start gap-32">
+    <div class="flex items-center gap-2 w-[25%] text-lg text-gray-500">
+        <ng-icon class="text-xl" [name]="icon"></ng-icon>
+        <p>{{text}}</p>
+    </div>
+
+    
+    
+        @if (text=="Priority") {
+                @switch (value) {
+                    @case (0) {
+                        <p class="text-xs p-1 rounded-md bg-gray-700 text-black">Blocked</p>
+                    }
+                    @case (1) {
+                        <p class="text-xs p-1 rounded-md bg-red-200 px-3 text-red-700">Critical</p>
+                    }
+                    @case (2) {
+                        <p class="text-xs p-1 rounded-md bg-orange-200 px-3 text-orange-700">High</p>
+                    }
+                    @case (3) {
+                        <p class="text-xs p-1 rounded-md bg-yellow-200 px-3 text-yellow-700">Medium</p>
+                    }
+                    @case (4) {
+                        <p class="text-xs p-1 rounded-md bg-green-200 px-3 text-green-700">Low</p>
+                    }
+                }
+        }@else if(text=='Status') {
+            <div class="flex gap-2 items-center">
+           <div class="text-xs px-2 pe-3 p-1 flex items-center gap-1" [ngClass]="returnColor()">
+                <span class="w-[0.4rem] h-[0.4rem] rounded-full bg-gray-500"></span>
+                <p class="">{{value}}</p>
+            </div>
+            <div class="relative">
+                <ng-icon  class="cursor-pointer text-lg" name="bootstrapFileArrowDown" (click)="this.statutOpen = !this.statutOpen"></ng-icon>
+                <div *ngIf="statutOpen" class="absolute w-40 bg-white p-2 left-7 top-0 shadow-md" name="" id="">
+                    @for (taskstatut of this.status; track $index) {
+                        @if (taskstatut != value) {
+                            <p (click)="changeStatut(taskstatut)" class="w-full p-1 cursor-pointer hover:bg-gray-200">{{taskstatut}}</p>
+                        }  
+                    }
+                </div>
+            </div>
+           
+            </div>
+        }@else {
+            <p class="text-sm">{{value}}</p>
+        }
+</div>

@@ -1,0 +1,23 @@
+<div class="w-full flex justify-between items-center p-2">
+    <div class="flex gap-2 items-center">
+        <div 
+        class="border w-fit text-sm flex items-center gap-1 rounded-md p-2"
+        [ngClass]="{
+          'border-red-600 text-red-600 bg-red-200': color === 'red',
+          'border-orange-600 text-orange-600 bg-orange-200': color === 'orange',
+          'border-green-600 text-green-600 bg-green-200': color === 'green'
+        }"
+      >
+        <ng-icon [name]="icon"></ng-icon>
+        <span>{{ text }}</span> 
+      </div>
+      
+        <div class="border p-2 text-sm px-3 rounded-md bg-gray-100 shadow-md border-gray-300 text-gray-600">
+            4
+        </div>
+    </div>
+
+    <div class="border p-2 text-sm px-3 rounded-md bg-gray-100 border-gray-300 text-gray-600 flex justify-center items-center">
+        <ng-icon class="rotate-90" name="matArrowForwardIos"></ng-icon>
+    </div>
+</div>

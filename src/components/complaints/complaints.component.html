@@ -1,0 +1,5 @@
+<div class="w-full h-full p-2 bg-gray-200">
+    <app-complaint-item (click)="openModule(complaint)" *ngFor="let complaint of data" [complaint]="complaint"></app-complaint-item>
+</div>
+
+<app-extrain-informations-complaints-item *ngIf="module"></app-extrain-informations-complaints-item>

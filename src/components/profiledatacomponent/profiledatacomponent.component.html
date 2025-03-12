@@ -1,0 +1,25 @@
+<div class="card p-3 font-Inter flex flex-col gap-4 rounded-lg">
+    <div class="top flex gap-3 items-center">
+        <div class="image rounded-full w-14 h-14 bg-primary"></div>
+        <div class="text">
+            <h2 class="text-xl font-semibold">Mohamed Nouaoui <span class="text-sm font-medium">(22)</span></h2>
+            <p>Client for smart waste   </p>
+        </div>
+    </div>
+    <div class="bottom w-full flex gap-2">
+        <div 
+        [routerLink]="['/profile']"
+        [ngClass]="{ 'bg-primary text-white': router.isActive('/profile', true), 'text-gray-400': !router.isActive('/profile', true) }"  
+        class="py-2 px-4 rounded-md  text-sm flex items-center justify-center gap-1 cursor-pointer">
+            <ng-icon name="bootstrapBack"></ng-icon>
+            <p>Overview</p>
+        </div>
+        <div 
+        [routerLink]="['/profile/reports']" 
+        [ngClass]="{ 'bg-primary text-white': router.isActive('/profile/reports', true), 'text-gray-400': !router.isActive('/profile/reports', true) }"
+        class="py-2 px-4 rounded-md  text-sm flex items-center justify-center gap-1 cursor-pointer">
+            <ng-icon name="bootstrapBack"></ng-icon>
+            <p>Reports</p>
+        </div>
+    </div>
+</div>

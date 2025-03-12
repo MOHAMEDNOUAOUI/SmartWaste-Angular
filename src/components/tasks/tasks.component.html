@@ -1,0 +1,5 @@
+<div class="w-full h-full p-2 bg-gray-200">
+    <app-taskitem  (click)="openModule(task)" *ngFor="let task of data" [data]="task"></app-taskitem>
+</div>
+
+<app-extra-informations-task-item  *ngIf="module"></app-extra-informations-task-item>

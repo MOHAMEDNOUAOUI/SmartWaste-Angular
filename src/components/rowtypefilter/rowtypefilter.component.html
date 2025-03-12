@@ -1,0 +1,10 @@
+<div class="w-full bg-gray-200 flex items-center justify-between rounded-lg p-2">
+    <div class="flex items-center gap-2">
+        <ng-icon name="matPlusOutline"></ng-icon>
+        <p>{{ type }}</p>
+    </div>
+    <div class="flex items-center gap-2 py1 px-2 rounded-md" [ngClass]="'bg-'+color+'-300'">
+        <ng-icon [ngClass]="'text-'+color+'-700'" [name]="Icon"></ng-icon>
+        <p [ngClass]="'text-'+color+'-700'" class="font-semibold">{{count}}</p>
+    </div>
+</div>

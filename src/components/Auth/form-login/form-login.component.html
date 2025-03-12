@@ -1,0 +1,29 @@
+<div class="w-full flex flex-col gap-4 font-Inter">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" class="flex flex-col gap-4">
+
+        <div>
+            <app-form-input 
+              [icon]="'matMailOutline'" 
+              [text]="'Email'" 
+              [type]="'email'" 
+              formControlName="email">
+            </app-form-input>
+            <span *ngIf="submitted && f['email'].errors?.['required']" class="text-red-500">Email is required.</span>
+            <span *ngIf="submitted && f['email'].errors?.['email']" class="text-red-500">Invalid email format.</span>
+          </div>
+      
+          <div>
+            <app-form-input 
+              [icon]="'matLockOutline'" 
+              [text]="'Password'" 
+              [type]="'password'" 
+              formControlName="password">
+            </app-form-input>
+            <span *ngIf="submitted && f['password'].errors?.['required']" class="text-red-500">Password is required.</span>
+            <span *ngIf="submitted && f['password'].errors?.['minlength']" class="text-red-500">Minimum 6 characters required.</span>
+          </div>
+        <p class="w-full flex justify-end"><span class="text-sm text-lightgreen cursor-pointer">Forgot password?</span></p>
+        <button class="bg-lightgreen p-3 text-white rounded-lg text-sm cursor-pointer">Log in</button>
+
+    </form>
+</div>

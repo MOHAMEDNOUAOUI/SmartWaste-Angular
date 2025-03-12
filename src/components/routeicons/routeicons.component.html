@@ -1,0 +1,15 @@
+<div class="tool border cursor-pointer p-1 flex items-center w-fit rounded-md gap-1 relative group">
+    <ng-icon [name]="icon" class="text-gray-400"></ng-icon>
+    <span class="text-sm">{{text}}</span>
+  
+    <!-- Tooltip -->
+    <div class="tooltip absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 p-2 bg-gray-600 text-white text-xs rounded opacity-0 transition-opacity group-hover:opacity-100">
+      <ng-container [ngSwitch]="icon">
+        <div *ngSwitchCase="'matFireTruck'">Car Number</div>
+        <div *ngSwitchCase="'matDeleteSweep'">Bins</div>
+        <div *ngSwitchCase="'matComment'">Total Complaints</div>
+        <div *ngSwitchDefault>Default Tooltip</div>
+      </ng-container>
+    </div>
+  </div>
+  
