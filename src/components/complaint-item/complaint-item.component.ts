@@ -14,13 +14,19 @@ export class ComplaintItemComponent {
 
     complaintString(priority:number) : string {
       switch(priority){
+        case 0:{
+          return 'Blocked'
+        }
         case 1:{
-          return 'High'
+          return 'Critical'
         }
         case 2:{
-          return 'Medium'
+          return 'High'
         }
         case 3:{
+          return 'Medium'
+        }
+        case 4:{
           return 'Low'
         }
         default:{
@@ -28,4 +34,7 @@ export class ComplaintItemComponent {
         }
       }
     }
+
+
+  
 }

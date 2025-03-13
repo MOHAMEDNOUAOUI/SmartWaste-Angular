@@ -1,18 +1,33 @@
-<div class="fixed right-0 top-0 h-full w-full bg-gray-600 bg-opacity-10 font-Inter" *ngIf="roots$ | async as root">
+<div class="fixed right-0 top-0 h-full w-full bg-gray-600 bg-opacity-10 font-Inter" *ngIf="complaint$ | async as complaint">
     <div class="absolute top-4 right-3 h-[95%] w-2/6 bg-white rounded-lg module">
        <div class="w-full p-2 py-4 border-b flex items-center">
             <ng-icon name="matClose" class="text-3xl cursor-pointer" (click)="closeModule()"></ng-icon>
        </div>
        <div class="w-full px-6 py-5 flex flex-col gap-6">
-            
+            <h3 class="text-3xl">{{complaint.comment}}</h3>
             <div class="py-4 flex flex-col gap-4">
-               
+                <app-extra-item [icon]="'matMoreTime'" [text]="'Create Time'" [value]="complaint.created_at |date:'MMMM d, yyyy hh:mm a'"></app-extra-item>
+                <app-extra-item [icon]="'bootstrapSun'" [text]="'Status'" [value]="complaint.status"></app-extra-item>
+                <app-extra-item [icon]="'matCheckCircleOutline'" [text]="'Priority'" [value]="complaint.priority"></app-extra-item>
+                <app-extra-item [icon]="'matDateRange'" [text]="'Due Date'" [value]="complaint.resolved_at| date:'MMMM d, yyyy hh:mm a'"></app-extra-item>
+                <div class="flex items-center gap-32">
+                    <div class="flex items-center gap-2 w-[25%] text-lg text-gray-500">
+                        <ng-icon class="text-xl" name="heroUserGroup"></ng-icon>
+                        <p>Reporter</p>
+                    </div>
+                    <div class="">
+                        {{complaint.}}
+                    </div>
+                </div>
                 <div class="bg-gray-50 text-gray-700 w-full p-2">
                     <h4 class="text-gray-800">Task Description</h4>
-                    <p class="w-full text-sm">{{root.description}}</p>
+                    <p class="w-full text-sm">{{complaint.description}}</p>
                 </div>
             </div>
             
+        </div>
+        <div>
+
         </div>
     </div>
 </div>

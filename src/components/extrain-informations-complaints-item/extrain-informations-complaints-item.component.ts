@@ -11,10 +11,12 @@ import {matClose , matMoreTime} from "@ng-icons/material-icons/baseline"
 import {bootstrapSun} from "@ng-icons/bootstrap-icons"
 import {matCheckCircleOutline} from "@ng-icons/material-icons/outline"
 import {matDateRange} from '@ng-icons/material-icons/baseline'
+import { ExtraItemComponent } from "../extra-item/extra-item.component";
+import { ExtraInfosmallDataItemComponent } from "../extra-infosmall-data-item/extra-infosmall-data-item.component";
 
 @Component({
   selector: 'app-extrain-informations-complaints-item',
-  imports: [NgIcon , CommonModule],
+  imports: [NgIcon, CommonModule, ExtraItemComponent, ExtraInfosmallDataItemComponent],
   templateUrl: './extrain-informations-complaints-item.component.html',
   styleUrl: './extrain-informations-complaints-item.component.css',
   viewProviders:[provideIcons({matClose , matMoreTime , bootstrapSun , matDateRange, matCheckCircleOutline})]
@@ -22,10 +24,10 @@ import {matDateRange} from '@ng-icons/material-icons/baseline'
 export class ExtrainInformationsComplaintsItemComponent {
 
  constructor(private store:Store){}
-  roots$!:Observable<Complaints| null>;
+  complaint$!:Observable<Complaints| null>;
 
   ngOnInit() : void {
-    this.roots$ = this.store.select(selectedComplaint);
+    this.complaint$ = this.store.select(selectedComplaint);
   }
 
   closeModule() : void {

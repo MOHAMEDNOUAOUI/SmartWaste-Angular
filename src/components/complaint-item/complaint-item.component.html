@@ -3,20 +3,20 @@
             <div class="flex items-center gap-1">
                 
                     @switch (complaint.priority) {
+                        @case (0) {
+                            <p class="text-xs p-1 rounded-md bg-gray-700 text-black">Blocked</p>
+                        }
                         @case (1) {
-                            <div class="bg-red-200 text-red-600 text-xs p-1 px-2 rounded-md">
-                                high
-                            </div>
+                            <p class="text-xs p-1 rounded-md bg-red-200 px-3 text-red-700">Critical</p>
                         }
                         @case (2) {
-                            <div class="bg-yellow-200 text-yellow-600 text-xs p-1 px-2 rounded-md">
-                                Medium
-                            </div>
+                            <p class="text-xs p-1 rounded-md bg-orange-200 px-3 text-orange-700">High</p>
                         }
                         @case (3) {
-                            <div class="bg-blue-200 text-blue-600 text-xs p-1 px-2 rounded-md">
-                                Low
-                            </div>
+                            <p class="text-xs p-1 rounded-md bg-yellow-200 px-3 text-yellow-700">Medium</p>
+                        }
+                        @case (4) {
+                            <p class="text-xs p-1 rounded-md bg-green-200 px-3 text-green-700">Low</p>
                         }
                     }
 
