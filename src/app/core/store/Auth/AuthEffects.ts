@@ -2,16 +2,17 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AuthService } from "./AuthService";
 import { Store } from "@ngrx/store";
 import { Injectable } from "@angular/core";
-import { catchError, map, Observable, of, switchMap, tap } from "rxjs";
-import { LoadToken, LoadTokenFailure, LoadTokenSuccess, Login, LoginFailure, LoginSuccess } from "./AuthActions";
+import { catchError, map, Observable, of, switchMap, take, tap } from "rxjs";
+import { ClearError, ClearState, LoadToken, LoadTokenFailure, LoadTokenSuccess, Login, LoginFailure, LoginSuccess, Logout } from "./AuthActions";
 import Swal from "sweetalert2";
+import { Router } from "@angular/router";
 
 
 @Injectable({
     providedIn:'root'
 })
 export class AuthEffects {
-    constructor(private authService:AuthService , private store:Store , private action$:Actions){
+    constructor(private authService:AuthService ,private router:Router , private store:Store , private action$:Actions){
 
     }
     
@@ -39,6 +40,8 @@ export class AuthEffects {
                     timer: 2000,
                     showConfirmButton: false
                 });
+                this.store.dispatch(ClearState());
+                this.router.navigate(['/'])
             })
         ),
         {dispatch:false}
@@ -58,6 +61,15 @@ export class AuthEffects {
       );
 
 
-
+      $logout= createEffect(
+        () => this.action$.pipe(
+          ofType(Logout),
+          take(1),
+          tap(() => {
+            localStorage.removeItem('Token');
+            this.router.navigate(['/auth/login'])
+          })
+        )
+      )
 
 }

@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store"
-import {ClearError, LoadToken, LoadTokenFailure, LoadTokenSuccess, Login, LoginFailure, LoginSuccess } from "./AuthActions"
+import {ClearError, ClearState, LoadToken, LoadTokenFailure, LoadTokenSuccess, Login, LoginFailure, LoginSuccess, Logout } from "./AuthActions"
 
 
 export interface LoginResponse {
@@ -28,5 +28,7 @@ export const AuthentificationReducer = createReducer(
     on(ClearError , (state) => ({...state,error:null})),
     on(LoadToken , (state) => ({...state,loading:true})),
     on(LoadTokenSuccess , (state , {data}) => ({...state,data:data , loading:false})),
-    on(LoadTokenFailure , (state , {error}) => ({...state,loading:false,error:error}))
+    on(LoadTokenFailure , (state , {error}) => ({...state,loading:false,error:error})),
+    on(Logout , (state) => ({...state,data:null})),
+    on(ClearState , (state) => ({...state,data:null,error:null,loading:false}))
 )

@@ -16,3 +16,5 @@ export const LoadTokenSuccess = createAction('[Token] Load token Success' ,props
 export const LoadTokenFailure = createAction('[Token] Load token Failure' , props<{error:Error}>());
 
 export const ClearError = createAction('[Authentification] clear Error login');
+
+export const ClearState = createAction('[Clear Data] Clear State');

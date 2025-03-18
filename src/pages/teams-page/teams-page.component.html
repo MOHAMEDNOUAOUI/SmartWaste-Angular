@@ -1,0 +1,21 @@
+<div class="w-full h-full font-Inter flex flex-col gap-4">
+    <div class="flex w-fit border border-gray-300 p-1 rounded-md gap-3 bg-gray-100 text-gray-400">
+        <p class="flex items-center gap-1 cursor-pointer transform duration-300" 
+        routerLink="/Dashboard/Teams/Employees"  
+        [ngClass]="{'bg-white p-1 px-2 text-blue-500 rounded-md': isActive('/Dashboard/Teams/Employees')}">
+         <ng-icon name="matAppsOutline"></ng-icon>
+         <span>Employees</span>
+        </p>
+        <p class="flex items-center gap-1 cursor-pointer transform duration-300" 
+        routerLink="/Dashboard/Teams/Users"  
+        [ngClass]="{'bg-white p-1 px-2 text-blue-500 rounded-md': isActive('/Dashboard/Teams/Users')}">
+         <ng-icon name="matAppsOutline"></ng-icon>
+         <span>Users</span>
+     </p>
+    </div>
+
+    <div class="w-full h-full p-3">
+        <router-outlet></router-outlet>
+    </div>
+    
+</div>

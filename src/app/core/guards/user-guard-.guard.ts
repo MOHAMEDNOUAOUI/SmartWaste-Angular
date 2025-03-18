@@ -3,8 +3,8 @@ import { inject } from '@angular/core';
 import { AuthService } from '../store/Auth/AuthService';
 import { LoginResponse } from '../store/Auth/AuthReducer';
 
-export const roleGuard: CanActivateFn = (route, state) => {
- const authService = inject(AuthService);
+export const userGuard: CanActivateFn = (route, state) => {
+  const authService = inject(AuthService);
   const router = inject(Router);
 
   // Check if token exists
@@ -15,14 +15,17 @@ export const roleGuard: CanActivateFn = (route, state) => {
     return false;
   }
 
+  // Decode the JWT token to get the user's role
   const decodedToken = parseJwt(userToken.token);
   const userRole = decodedToken?.role;
 
-  if (userRole === 'ROLE_USER') {
-    router.navigate(['/']);
+  // If the user is Admin or Worker, redirect to Dashboard
+  if (userRole === 'ROLE_ADMIN' || userRole === 'ROLE_WORKER') {
+    router.navigate(['/Dashboard']);
     return false;
   }
 
+  // Allow access to user-related pages
   return true;
 };
 
@@ -36,4 +39,3 @@ function parseJwt(token: string): any {
     return null;
   }
 }
-

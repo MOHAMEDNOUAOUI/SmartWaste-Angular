@@ -13,4 +13,9 @@ export class ComplaintSerivce {
      loadComplaints() : Observable<Complaints[]> {
         return this.http.get<Complaints[]>(env.url+'/complaint/workerComplaints')
      }
+
+     updateTask(complaints: Complaints): Observable<Complaints> {
+             return this.http.put<Complaints>(env.url+`/complaint/updateStatut/${complaints.status}/${complaints.id}`, null);
+         }
+         
 }

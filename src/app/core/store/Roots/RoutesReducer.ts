@@ -1,6 +1,7 @@
 import { createReducer, on } from "@ngrx/store"
 import { Roots } from "../../Models/Roots.modules"
 import { LoadSelectedRoutes, LoadUserRoutes, LoadUserRoutesFailed, LoadUserRoutesSuccefully, ResetSelectedRoutes } from "./RoutesActions"
+import { ClearState } from "../Auth/AuthActions"
 
 export interface RoutesState {
     loading:boolean
@@ -23,5 +24,6 @@ export const RoutesReducer = createReducer(
     on(LoadUserRoutesSuccefully  , (state , {routes}) => ({...state,data:routes,loading:false})),
     on(LoadUserRoutesFailed , (state , {error}) => ({...state,error:error})),
     on(LoadSelectedRoutes , (state , {route}) => ({...state,selecteRoute:route})),
-    on(ResetSelectedRoutes , (state) => ({...state,selecteRoute:null}))
+    on(ResetSelectedRoutes , (state) => ({...state,selecteRoute:null})),
+    on(ClearState , (state) => ({...state,data:null,loading:false,error:null}))
 )

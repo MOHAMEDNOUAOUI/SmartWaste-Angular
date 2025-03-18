@@ -1,0 +1,112 @@
+<div class="w-full h-full flex flex-col font-Inter gap-3">
+   <div>
+    <h3 class="text-2xl">Employees Analytics</h3>
+    <p class="text-gray-400 w-3/4 text-sm">This dashboard provides insights into employee performance, attendance, and overall productivity. Use the analytics to track trends, identify areas for improvement, and make data-driven decisions to optimize workforce efficiency.</p>
+   </div>
+   <div class="w-full">
+        <div>
+            
+        </div>
+   </div>
+
+    <div class="bg-gray-100 rounded-md p-1 w-full h-full relative">
+        <table class="w-full border text-left rtl:text-right text-gray-500 ">
+            <thead class="text-sm border text-gray-700 font-light bg-gray-50 ">
+                <tr>
+                    <th scope="col" class="border px-4 w-48 py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <p class="font-semibold">Full Name</p>
+                        </div>
+                    </th>
+                    <th scope="col" class="border px-4 w-64 py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <ng-icon class="text-xl" name="ionAtCircleOutline"></ng-icon>
+                            <p class="font-semibold">Email</p>
+                        </div>
+                    </th>
+                    <th scope="col" class="border px-4  py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <ng-icon class="text-xl" name="ionFlashOutline"></ng-icon>
+                            <p class="font-semibold">Status</p>
+                        </div>
+                    </th>
+                    <th scope="col" class="border px-4  py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <ng-icon class="text-xl" name="ionCalendarOutline"></ng-icon>
+                            <p class="font-semibold">Joined date - Hire date</p>
+                        </div>
+                    </th>
+                    <th scope="col" class="border px-4 w-fit py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <ng-icon class="text-xl" name="ionCalendarOutline"></ng-icon>
+                            <p class="font-semibold">Contact Info</p>
+                        </div>
+                    </th>
+                    <th scope="col" class="border px-4 w-fit py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <ng-icon class="text-xl" name="ionCalendarOutline"></ng-icon>
+                            <p class="font-semibold">Salaire</p>
+                        </div>
+                    </th>
+                    <th scope="col" class="border px-4 w-fit py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <ng-icon class="text-xl" name="ionCalendarOutline"></ng-icon>
+                            <p class="font-semibold">Tasks</p>
+                        </div>
+                    </th>
+                    <th scope="col" class="border px-4 w-fit py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <ng-icon class="text-xl" name="ionCalendarOutline"></ng-icon>
+                            <p class="font-semibold">Vehicules</p>
+                        </div>
+                    </th>
+                    <th scope="col" class="border px-4 w-32 py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <ng-icon class="text-xl" name="ionSyncCircleOutline"></ng-icon>
+                            <p class="font-semibold">Actions</p>
+                        </div>
+                    </th>
+                </tr>
+                
+            </thead>
+            <tbody *ngIf="Workers$ |async as workers">
+                <tr *ngFor="let worker of workers" class="cursor-pointer border-b border-gray-200">
+                    <td class="px-6 py-4">
+                        {{worker.username}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{worker.email}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{worker.job_title}}
+                    </td>
+                    <td class="px-6 py-4 flex gap-2">
+                        <p>{{worker.created_at | date:'MM dd,yyyy - HH:mm'}}</p>
+                        <span>/\</span>
+                        <p>{{worker.hire_date | date:'MM dd,yyyy - HH:mm'}}</p>
+                    </td>
+                    <td class="px-6 py-4">
+                        {{worker.contact_info}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{worker.salaire}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{worker.taskList.length}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{worker.vehiculeList.length}}
+                    </td>
+                    <td class="px-6 py-4 flex gap-2 w-32">
+                        <button (click)="deleteEmployee(worker)" class="border border-gray-300  text-gray-500 px-3 rounded hover:bg-white transition duration-300">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="w-full absolute bottom-0 h-[10%] bg-black">
+
+        </div>
+
+    </div>
+</div>

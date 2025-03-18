@@ -15,3 +15,15 @@ export interface Complaints{
     mediaList:Medias
     bins:Bins
 }
+
+export interface ComplaintsDTO{
+    id:number
+    description:string
+    priority:number
+    comment:string
+    created_at:Date
+    resolved_at:Date
+    status:StatusComplaint
+    mediaList:Medias
+    bins:Bins
+}

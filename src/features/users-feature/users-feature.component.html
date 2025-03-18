@@ -1,0 +1,77 @@
+<div class="w-full h-full flex flex-col gap-3">
+    <div>
+        <h3 class="text-2xl">Clients Analytics</h3>
+        <p class="text-gray-400 w-3/4 text-sm">
+            This dashboard provides insights into client engagement, purchases, and interactions. Use the analytics to track trends, improve customer experience, and make data-driven decisions to enhance client satisfaction.
+        </p>
+    </div>
+    <div class="w-full">
+        <div>
+            <!-- You can add filters, charts, or summaries here -->
+        </div>
+    </div>
+
+    <div class="bg-gray-100 rounded-md p-1 w-full h-full relative">
+        <table class="w-full border text-left rtl:text-right text-gray-500 ">
+            <thead class="text-sm border text-gray-700 font-light bg-gray-50 ">
+                <tr>
+                    <th scope="col" class="border px-4 w-48 py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <p class="font-semibold">Full Name</p>
+                        </div>
+                    </th>
+                    <th scope="col" class="border px-4 w-64 py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <ng-icon class="text-xl" name="ionAtCircleOutline"></ng-icon>
+                            <p class="font-semibold">Email</p>
+                        </div>
+                    </th>
+                    <th scope="col" class="border px-4  py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <ng-icon class="text-xl" name="ionFlashOutline"></ng-icon>
+                            <p class="font-semibold">Created time</p>
+                        </div>
+                    </th>
+                    <th scope="col" class="border px-4 w-6 py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <ng-icon class="text-xl" name="ionFlashOutline"></ng-icon>
+                            <p class="font-semibold">Complaints</p>
+                        </div>
+                    </th>
+                    <th scope="col" class="border px-4 w-20 py-3">
+                        <div class="w-full flex items-center gap-1">
+                            <ng-icon class="text-xl" name="ionSyncCircleOutline"></ng-icon>
+                            <p class="font-semibold">Actions</p>
+                        </div>
+                    </th>
+                </tr>
+                
+            </thead>
+            <tbody *ngIf="Clients$ |async as Clients">
+                <tr *ngFor="let client of Clients" class="cursor-pointer border-b border-gray-200">
+                    <td class="px-6 py-4">
+                        {{client.username}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{client.email}}
+                    </td>
+                    <td class="px-6 py-4 gap-2">
+                        {{client.created_at | date:'MM dd,yyyy - HH:mm'}}
+                    </td>
+                    <td class="px-6 py-4 gap-2">
+                        {{client.complaintList.length}}
+                    </td>
+                    <td class="px-6 py-4 flex gap-2">
+                        <button class="border bg-lightgreen text-white px-3 rounded">Hire</button>
+                        <button (click)="deleteClient(client)" class="border border-gray-300  text-gray-500 px-3 rounded hover:bg-white transition duration-300">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="w-full absolute bottom-0 h-[10%] bg-black">
+
+        </div>
+
+    </div>
+</div>

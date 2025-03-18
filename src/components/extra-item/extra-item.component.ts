@@ -5,13 +5,17 @@ import {matFilterVintage , matDateRange} from "@ng-icons/material-icons/baseline
 import {heroUserGroup , heroSquare3Stack3d , heroFlag , heroPaperAirplane} from '@ng-icons/heroicons/outline'
 import { Store } from '@ngrx/store';
 import { StatusComplaint } from '../../app/core/Models/enums/Enums';
+import {bootstrapFileArrowDown} from "@ng-icons/bootstrap-icons"
+import { selectedComplaint } from '../../app/core/store/Complaints/ComplaintSelector';
+import { take } from 'rxjs';
+import { UpdateComplaintStatus } from '../../app/core/store/Complaints/ComplaintActions';
 
 @Component({
   selector: 'app-extra-item',
   imports: [NgIcon , CommonModule],
   templateUrl: './extra-item.component.html',
   styleUrl: './extra-item.component.css',
-  viewProviders:[provideIcons({matFilterVintage , heroUserGroup , heroPaperAirplane , heroFlag , matDateRange , heroSquare3Stack3d})]
+  viewProviders:[provideIcons({matFilterVintage , bootstrapFileArrowDown , heroUserGroup , heroPaperAirplane , heroFlag , matDateRange , heroSquare3Stack3d})]
 })
 export class ExtraItemComponent {
   @Input() icon!:string;
@@ -47,4 +51,19 @@ export class ExtraItemComponent {
         }
       }
     }
+
+      changeStatut(status:StatusComplaint) : void {
+          this.store.select(selectedComplaint).pipe(
+            take(1)
+          ).subscribe(complaint => {
+            if(complaint){
+              const updateTask = {...complaint,status:status};
+              this.statutOpen = false;
+              this.store.dispatch(UpdateComplaintStatus({complaint:updateTask}));
+            }
+          })
+      }
+
+
+
 }

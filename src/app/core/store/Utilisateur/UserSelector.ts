@@ -6,3 +6,11 @@ export const User = createSelector(
     userstate,
     (state:UserSt) => state.data
 )
+export const AllClients = createSelector(
+    userstate,
+    (state:UserSt) => state.Clients
+)
+export const AllWorkers = createSelector(
+    userstate,
+    (state:UserSt) => state.Workers
+)

@@ -1,6 +1,7 @@
 import { createReducer, on } from "@ngrx/store"
 import { Task } from "../../Models/Task.modules"
 import { LoadTasksForLoggedUser, LoadTasksForLoggedUserFailure, LoadTasksForLoggedUserSuccess, resetSelectedTask, SelectTask, UpdateTask, UpdateTaskFailure, UpdateTasksList, UpdateTaskSuccess} from "./TasksActions"
+import { ClearState } from "../Auth/AuthActions"
 
 export interface TasksState {
     loading:boolean
@@ -28,5 +29,6 @@ export const TasksReducer = createReducer(
     on(UpdateTask , (state , {task}) => ({...state,loading:true})),
     on(UpdateTaskSuccess , (state , {task}) => ({...state , loading:false , selectedTask:task})),
     on(UpdateTaskFailure , (state , {error}) => ({...state,loading:false , error:error})),
-    on(UpdateTasksList , (state , {tasks}) => ({...state,data:tasks}))
+    on(UpdateTasksList , (state , {tasks}) => ({...state,data:tasks})),
+    on(ClearState , (state )=> ({...state,data:null,loading:false,selectedTask:null,error:null}))
 )

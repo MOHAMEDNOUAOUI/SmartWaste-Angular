@@ -1,3 +1,4 @@
+import { ComplaintsDTO } from "./Complaints.modules"
 import { Role } from "./enums/Enums"
 import { Task } from "./Task.modules"
 import { Vehicule } from "./Vehicule.modules"
@@ -16,7 +17,7 @@ export interface Utilisateur {
 }
 
 export interface Client extends Utilisateur {
-
+    complaintList:ComplaintsDTO[]
 }
 
 export interface Worker extends Utilisateur{

@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { LogoComponent } from "../../components/logo/logo.component";
 import { AuthLogoComponent } from "../../components/Auth/auth-logo/auth-logo.component";
 import { RouterLink } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Logout } from '../../app/core/store/Auth/AuthActions';
 
 @Component({
   selector: 'app-navbar',
@@ -17,10 +19,15 @@ import { RouterLink } from '@angular/router';
 })
 export class NavbarComponent {
   isScrolled = false;
+  constructor(private store:Store){}
 
   @HostListener('window:scroll', [])
   onScroll(): void {
     const scrollPosition = window.scrollY || document.documentElement.scrollTop;
     this.isScrolled = scrollPosition > 0;
+  }
+
+  logOut() : void {
+    this.store.dispatch(Logout());
   }
 }
