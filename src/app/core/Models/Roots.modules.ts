@@ -1,4 +1,4 @@
-import { Bins } from "./Bins.modules"
+import { Bins, BinsCreate } from "./Bins.modules"
 import { VehiculeDTO } from "./Vehicule.modules"
 
 export interface Roots {
@@ -9,4 +9,10 @@ export interface Roots {
     bins:Bins[]
     vehicule:VehiculeDTO
 }
-
+export interface RootsCreateDTO {
+    start_time:Date
+    end_time:Date
+    distance:number
+    bins:BinsCreate[]
+    vehiculeId:number
+}

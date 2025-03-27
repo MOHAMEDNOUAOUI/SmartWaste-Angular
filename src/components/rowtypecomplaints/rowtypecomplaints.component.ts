@@ -28,9 +28,6 @@ export class RowtypecomplaintsComponent {
       
     }
   
-  ngOnInit() : void {
-      this.store.dispatch(loadEmployeeComplaint());
-  }
 
   ngAfterViewInit() : void {
     this.store.select(selectAllComplaints).subscribe((complaints) => {

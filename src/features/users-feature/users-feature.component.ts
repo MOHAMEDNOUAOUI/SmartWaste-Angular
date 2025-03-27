@@ -4,7 +4,7 @@ import { NgIcon } from '@ng-icons/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Client } from '../../app/core/Models/Utilisateur.modules';
-import { DeleteClient, LoadAllClients } from '../../app/core/store/Utilisateur/UserActions';
+import { DeleteClient, Hire, LoadAllClients } from '../../app/core/store/Utilisateur/UserActions';
 import { AllClients } from '../../app/core/store/Utilisateur/UserSelector';
 
 @Component({
@@ -26,5 +26,9 @@ export class UsersFeatureComponent {
 
   deleteClient(client:Client):void {
     this.store.dispatch(DeleteClient({id:client.id}));
+  }
+
+  Hire(client:Client) {
+    this.store.dispatch(Hire({client:client}))
   }
 }

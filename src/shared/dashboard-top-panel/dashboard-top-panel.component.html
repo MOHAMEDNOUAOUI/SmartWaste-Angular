@@ -1,0 +1,11 @@
+<div class="w-full h-14 rounded-2xl border flex justify-between items-center px-4 p-1" *ngIf="User$ | async as User">
+    <div>
+        <h3 class="text-black font-bold text-xl">Welcome {{User.username}}</h3>
+        <p class="text-sm text-gray-500">Today is {{date | date:'EEEE, d MMMM yyyy'}}</p>
+    </div>
+   <div class="flex items-center gap-2">
+    <div routerLink="/profile" class="w-10 h-10 cursor-pointer flex justify-center items-center text-xl rounded-full bg-lightgreen">
+        {{User.username.charAt(0)}}
+    </div>
+   </div>
+</div>

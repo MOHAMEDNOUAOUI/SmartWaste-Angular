@@ -1,6 +1,9 @@
 import { Component, inject, Input } from '@angular/core';
 import { RowTypeComponent } from "../../components/row-type/row-type.component";
-import { TaskStatut } from '../../app/core/Models/enums/Enums';
+import { Role, TaskStatut } from '../../app/core/Models/enums/Enums';
+import { Store } from '@ngrx/store';
+import { LoadAllTasks, LoadTasksForLoggedUser } from '../../app/core/store/Task/TasksActions';
+import { UserRole } from '../../app/core/store/Utilisateur/UserSelector';
 
 
 @Component({
@@ -11,4 +14,20 @@ import { TaskStatut } from '../../app/core/Models/enums/Enums';
 })
 export class DailytasksComponent {
   TaskStatut = TaskStatut
+   role = Role;
+
+  constructor(private store:Store){}
+
+
+  ngOnInit() : void {
+    this.store.select(UserRole).subscribe(re => {
+          if(re == this.role.ROLE_ADMIN){
+            this.store.dispatch(LoadAllTasks());
+          }else if(re == this.role.ROLE_WORKER){
+            this.store.dispatch(LoadTasksForLoggedUser());
+          }
+        })
+  }
+
+
 }

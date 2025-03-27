@@ -20,16 +20,19 @@ import { ProfilePageComponent } from '../pages/profile-page/profile-page.compone
 import { ReportsPageComponent } from '../pages/reports-page/reports-page.component';
 import { roleGuard } from './core/guards/redirect-guard.guard';
 import { userGuard } from './core/guards/user-guard-.guard';
+import { ComplaintClientPageComponent } from '../pages/complaint-client-page/complaint-client-page.component';
+import { UserComplaintsPageComponent } from '../pages/user-complaints-page/user-complaints-page.component';
 
 export const routes: Routes = [
-    // Public Routes for users (excluding Admin/Worker)
+  
     { path: '', component: ClientPageComponent, canActivate: [userGuard], children: [
         { path: '', component: HomePageComponent },
-        { path: 'Solutions', component: SolutionsPageComponent }
+        { path: 'Complaint', component: ComplaintClientPageComponent },
+        { path: 'my-complaints', component: UserComplaintsPageComponent }
       ]
     },
   
-    // Admin/Worker Routes - Protected by roleGuard
+    
     { path: 'Dashboard', component: AdminLayoutComponent, canActivate: [roleGuard], children: [
         { path: '', component: AdminPageComponent },
         { path: 'Inbox', component: InboxPageComponent, children: [

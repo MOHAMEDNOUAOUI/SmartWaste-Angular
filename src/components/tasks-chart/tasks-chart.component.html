@@ -1,0 +1,17 @@
+<div class="w-full h-fit icon bg-white border font-Inter border-gray-200 py-4 px-4 rounded-md flex gap-2 flex-col">
+    <div class="flex items-center justify-between">
+        <h3 class="font-semibold text-gray-700">All Tasks Total Overview</h3>
+        <span class="cursor-pointer" routerLink="Inbox/tasks">></span>
+    </div>
+    <div class="mb-3">
+        <p class="text-2xl font-semibold text-gray-700">{{total}}</p>
+        <p class="text-gray-400">Most of employees complete their jobs on time</p>
+    </div>
+    <div class="flex flex-col gap-1">
+        <app-tasks-chart-item [type]="statutTask.Completed"></app-tasks-chart-item>
+        <app-tasks-chart-item [type]="statutTask.In_Progress"></app-tasks-chart-item>
+        <app-tasks-chart-item [type]="statutTask.To_DO"></app-tasks-chart-item>
+        <app-tasks-chart-item [type]="statutTask.Failed"></app-tasks-chart-item>
+        <app-tasks-chart-item [type]="statutTask.Cancelled"></app-tasks-chart-item>
+    </div>
+</div>

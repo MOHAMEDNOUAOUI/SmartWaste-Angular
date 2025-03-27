@@ -1,0 +1,163 @@
+<div class="w-screen min-h-screen relative flex items-start pt-20 flex-col text-black font-Inter bg-gray-50">
+  <div class="w-full max-w-6xl mx-auto">
+   <div class="mb-8 flex items-center justify-between">
+    <h1 class="text-3xl font-bold">Submit a Complaint</h1>
+    <button class="bg-green-500 text-green-800 border-green-600 p-2 rounded-md" routerLink="/my-complaints">Cmplaints</button>
+   </div>
+    
+    <!-- Map and Bin Selection Section -->
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+      <h2 class="text-xl font-semibold mb-4">Select a Bin Location</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <!-- Map -->
+        <div class="lg:col-span-3">
+          <div id="map" class="w-full h-[700px] rounded-lg border shadow-sm"></div>
+        </div>
+        
+        <!-- Bin List -->
+        <div class="space-y-4">
+          <div class="bg-gray-50 rounded-lg p-4">
+            <h3 class="font-medium mb-3">Available Bins</h3>
+            <div class="space-y-2 max-h-[600px] overflow-y-auto">
+              <div *ngIf="bins$ | async as bins">
+                <div *ngFor="let bin of bins" 
+                     (click)="showBinOnMap(bin)"
+                     class="p-3 bg-white border rounded-lg cursor-pointer hover:bg-blue-50 transition-colors"
+                     [class.bg-blue-100]="selectedBin?.id === bin.id">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h3 class="font-medium">Bin #{{bin.id}}</h3>
+                      <p class="text-sm text-gray-600">{{bin.location}}</p>
+                      <p class="text-sm text-gray-500">Capacity: {{bin.capacity}}</p>
+                    </div>
+                    <ng-icon name="matLocationOn" class="text-blue-500"></ng-icon>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sliding Complaint Form Panel -->
+  <div class="fixed inset-0 z-[10000]" *ngIf="showComplaintForm">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 transition-opacity" (click)="closeComplaintForm()"></div>
+    
+    <!-- Sliding Panel -->
+    <div class="absolute inset-y-0 right-0 w-full max-w-2xl bg-white shadow-xl transform transition-transform duration-300 ease-in-out"
+         [class.translate-x-0]="showComplaintForm"
+         [class.translate-x-full]="!showComplaintForm">
+      <div class="h-full flex flex-col">
+        <!-- Header -->
+        <div class="flex items-center justify-between p-6 border-b">
+          <div class="flex items-center space-x-4">
+            <h2 class="text-xl font-semibold">Complaint Details</h2>
+            <div class="flex items-center space-x-2">
+              <span class="text-sm text-gray-600">Selected Bin:</span>
+              <span class="font-medium">#{{selectedBin?.id}}</span>
+            </div>
+          </div>
+          <button (click)="closeComplaintForm()" class="p-2 hover:bg-gray-100 rounded-full">
+            <ng-icon name="matClose" class="text-gray-500"></ng-icon>
+          </button>
+        </div>
+
+        <!-- Form Content -->
+        <div class="flex-1 overflow-y-auto p-6">
+          <form [formGroup]="complaintForm" (ngSubmit)="onSubmit()" class="space-y-6">
+            <!-- Description -->
+            <div class="space-y-2">
+              <label class="block text-lg font-medium">Description</label>
+              <textarea 
+                formControlName="description"
+                rows="4"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Describe the issue with the bin..."
+              ></textarea>
+              <div *ngIf="complaintForm.get('description')?.touched && complaintForm.get('description')?.errors?.['required']" 
+                   class="text-red-500 text-sm">
+                Description is required
+              </div>
+              <div *ngIf="complaintForm.get('description')?.touched && complaintForm.get('description')?.errors?.['minlength']" 
+                   class="text-red-500 text-sm">
+                Description must be at least 10 characters
+              </div>
+            </div>
+
+            <!-- Priority -->
+            <div class="space-y-2">
+              <label class="block text-lg font-medium">Priority Level</label>
+              <div class="flex space-x-4">
+                <div *ngFor="let i of [1,2,3,4,5]" 
+                     (click)="complaintForm.patchValue({priority: i})"
+                     class="flex-1 p-3 text-center border rounded-lg cursor-pointer transition-colors"
+                     [class.bg-red-100]="complaintForm.get('priority')?.value === i && i >= 4"
+                     [class.bg-yellow-100]="complaintForm.get('priority')?.value === i && i === 3"
+                     [class.bg-green-100]="complaintForm.get('priority')?.value === i && i <= 2">
+                  {{i}}
+                </div>
+              </div>
+            </div>
+
+            <!-- Comment -->
+            <div class="space-y-2">
+              <label class="block text-lg font-medium">Additional Comments</label>
+              <textarea 
+                formControlName="comment"
+                rows="3"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Any additional information..."
+              ></textarea>
+              <div *ngIf="complaintForm.get('comment')?.touched && complaintForm.get('comment')?.errors?.['required']" 
+                   class="text-red-500 text-sm">
+                Comment is required
+              </div>
+            </div>
+
+            <!-- File Upload -->
+            <div class="space-y-2">
+              <label class="block text-lg font-medium">Attach Files (Optional)</label>
+              <div class="flex items-center space-x-4">
+                <label class="flex items-center px-4 py-2 bg-blue-50 text-blue-700 rounded-lg cursor-pointer hover:bg-blue-100 transition-colors">
+                  <ng-icon name="matUpload" class="mr-2"></ng-icon>
+                  Upload Files
+                  <input type="file" 
+                         multiple 
+                         accept="image/*,video/*"
+                         (change)="onFileSelected($event)"
+                         class="hidden">
+                </label>
+              </div>
+              
+              <!-- File Previews -->
+              <div *ngIf="previewUrls.length > 0" class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                <div *ngFor="let url of previewUrls; let i = index" class="relative group">
+                  <img [src]="url" class="w-full h-32 object-cover rounded-lg">
+                  <button type="button"
+                          (click)="removeFile(i)"
+                          class="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                    <ng-icon name="matClose" class="text-sm"></ng-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-4">
+              <button 
+                type="submit"
+                [disabled]="!complaintForm.valid"
+                class="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              >
+                Submit Complaint
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

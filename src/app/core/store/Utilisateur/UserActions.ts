@@ -10,14 +10,14 @@ export const LoadAuthenticatedUserFailure = createAction('[Authentification] Loa
 export const LoadAllClients = createAction('[Clients] LoadAllClients')
 export const LoadAllClientsSuccess = createAction(
     '[Clients] LoadAllClients Successfully',
-    props<{ Clients: Client[]; pagination:Pagination}>()
+    props<{ Clients: Client[]; pageable:Pagination}>()
   );
 export const LoadAllClientsFailure = createAction('[Clients] LoadAllClients Failed' , props<{error:string}>())
 
 export const LoadAllWorkers = createAction('[Workers] LoadAllWorkers')
 export const LoadAllWorkersSuccess = createAction(
     '[Workers] LoadAllWorkers Succesfully' , 
-    props<{Workers:Worker[]; pagination:Pagination}>()
+    props<{Workers:Worker[]; pageable:Pagination}>()
 );
 
 export const LoadAllWorkersFailure = createAction('[Workers] LoadAllWorkers Failed' , props<{error:string}>())
@@ -33,3 +33,7 @@ export const DeleteClientSuccess = createAction('[Client] Delete Client Success'
 export const DeleteClientFailure = createAction('[Client] Delete Client Failure' , props<{error:string}>());
 
 
+
+export const Hire = createAction('[Worker / Client] Hire' , props<{client:Client}>());
+export const HireSuccess = createAction('[Worker / Client] Hire Success' , props<{Clients:Client[] , Workers:Worker[]}>());
+export const HireFailed = createAction('[Worker / Client] Hire Failed' , props<{error:Error}>());

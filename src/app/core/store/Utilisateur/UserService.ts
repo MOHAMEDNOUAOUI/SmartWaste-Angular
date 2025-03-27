@@ -34,5 +34,8 @@ export class UserService {
         return this.http.delete(`${env.url}/client/${id}`, { responseType: 'text' });
     }
     
-    
+    Hire(id:number) : Observable<Worker> {
+        return this.http.post<Worker>(env.url+'/worker/hire/'+id , null);
+    }
+
 }

@@ -6,6 +6,7 @@ import { catchError, map, Observable, of, switchMap, take, tap } from "rxjs";
 import { ClearError, ClearState, LoadToken, LoadTokenFailure, LoadTokenSuccess, Login, LoginFailure, LoginSuccess, Logout } from "./AuthActions";
 import Swal from "sweetalert2";
 import { Router } from "@angular/router";
+import { Token } from "./AuthSelector";
 
 
 @Injectable({
@@ -22,17 +23,19 @@ export class AuthEffects {
           ofType(Login),
           switchMap(action =>
             this.authService.login(action.email, action.password).pipe(
-              map(loginResponse => LoginSuccess({ token: loginResponse })),
+              map(response => LoginSuccess({token:response.token})),
               catchError((err) => of(LoginFailure({ error: err.error })))
             )
           )
         )
-      );
+    );
 
     $loginsuccess = createEffect(
         () => this.action$.pipe(
             ofType(LoginSuccess),
-            tap(() => {
+            tap((action) => {
+              console.log(action)
+              localStorage.setItem('Token',action.token);
                 Swal.fire({
                     icon: 'success',
                     title: 'Login Successful',
@@ -47,18 +50,6 @@ export class AuthEffects {
         {dispatch:false}
     )
 
-    $saveToken = createEffect(
-        () => this.action$.pipe(
-          ofType(LoginSuccess),
-          tap(action => {
-            localStorage.setItem('Token', JSON.stringify({
-              token: action.token.token,
-              refreshToken: action.token.refreshToken
-            }));
-          })
-        ),
-        { dispatch: false }
-      );
 
 
       $logout= createEffect(
@@ -66,7 +57,7 @@ export class AuthEffects {
           ofType(Logout),
           take(1),
           tap(() => {
-            localStorage.removeItem('Token');
+            this.authService.logout();
             this.router.navigate(['/auth/login'])
           })
         )

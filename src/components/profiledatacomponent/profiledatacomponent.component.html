@@ -1,9 +1,9 @@
-<div class="card p-3 font-Inter flex flex-col gap-4 rounded-lg">
+<div class="card p-3 font-Inter flex flex-col gap-4 rounded-lg" *ngIf="user$ | async as user">
     <div class="top flex gap-3 items-center">
         <div class="image rounded-full w-14 h-14 bg-primary"></div>
         <div class="text">
-            <h2 class="text-xl font-semibold">Mohamed Nouaoui <span class="text-sm font-medium">(22)</span></h2>
-            <p>Client for smart waste   </p>
+            <h2 class="text-xl font-semibold">{{user.username}}<span class="text-sm font-medium">(22)</span></h2>
+            <p>Client for smart waste</p>
         </div>
     </div>
     <div class="bottom w-full flex gap-2">

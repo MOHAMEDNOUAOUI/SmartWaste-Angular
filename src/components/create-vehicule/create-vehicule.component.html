@@ -1,0 +1,102 @@
+<div class="glass w-screen h-screen fixed left-0 top-0 z-[1000] font-Inter">
+  <div class="w-1/3 h-full shadow-lg absolute bg-white right-0 top-0 p-6 overflow-auto">
+    
+    <div class="text-black cursor-pointer flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-semibold">Create Vehicle</h1>
+      <div class="flex items-center justify-center p-2 rounded-full hover:bg-gray-100 transition-colors" (click)="close.emit()">
+        <ng-icon name="matClose" class="text-2xl"></ng-icon>
+      </div>
+    </div>
+
+    
+    <form [formGroup]="vehiculeForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700">Vehicle Number</label>
+        <input 
+          type="text" 
+          formControlName="vehicule_number"
+          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Enter vehicle number"
+        >
+        <div *ngIf="vehiculeForm.get('vehicule_number')?.touched && vehiculeForm.get('vehicule_number')?.errors?.['required']" 
+             class="text-red-500 text-sm">
+          Vehicle number is required
+        </div>
+      </div>
+
+      
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700">Capacity</label>
+        <input 
+          type="number" 
+          formControlName="capacity"
+          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Enter vehicle capacity"
+        >
+        <div *ngIf="vehiculeForm.get('capacity')?.touched && vehiculeForm.get('capacity')?.errors?.['required']" 
+             class="text-red-500 text-sm">
+          Capacity is required
+        </div>
+        <div *ngIf="vehiculeForm.get('capacity')?.touched && vehiculeForm.get('capacity')?.errors?.['min']" 
+             class="text-red-500 text-sm">
+          Capacity must be greater than 0
+        </div>
+      </div>
+
+      
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700">Select Worker</label>
+        <div class="relative">
+          <input 
+            type="text" 
+            [formControl]="workerSearchControl"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Search worker by name"
+            (input)="onWorkerSearch($event)"
+          >
+          
+          <div *ngIf="filteredWorkers.length > 0 && showWorkerDropdown" 
+               class="absolute text-black z-[1000] w-full mt-1 bg-white border rounded-lg shadow-lg max-h-60 overflow-auto">
+            <div *ngFor="let worker of filteredWorkers" 
+                 (click)="selectWorker(worker)"
+                 class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+              <div class="font-medium">{{worker.username}}</div>
+              <div class="text-sm text-gray-500">ID: {{worker.id}}</div>
+            </div>
+          </div>
+        </div>
+        
+        <div *ngIf="selectedWorker" class="mt-2 p-2 bg-blue-50 rounded-lg text-black">
+          <div class="text-sm">Selected: {{selectedWorker.username}}</div>
+        </div>
+        <div *ngIf="vehiculeForm.get('worker_id')?.touched && vehiculeForm.get('worker_id')?.errors?.['required']" 
+             class="text-red-500 text-sm">
+          Please select a worker
+        </div>
+      </div>
+
+     
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-gray-700">Vehicle Location</label>
+        <div id="map" class="w-full h-64 rounded-lg border"></div>
+        <p class="text-sm text-gray-500">Click on the map to set the vehicle location</p>
+        <div *ngIf="vehiculeForm.get('location_latitude')?.touched && vehiculeForm.get('location_latitude')?.errors?.['required']" 
+             class="text-red-500 text-sm">
+          Please select a location on the map
+        </div>
+      </div>
+
+      
+      <div class="pt-4">
+        <button 
+          type="submit"
+          [disabled]="!vehiculeForm.valid"
+          class="w-full py-3 px-4 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        >
+          Create Vehicle
+        </button>
+      </div>
+    </form>
+  </div>
+</div>     

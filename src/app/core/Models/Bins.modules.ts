@@ -11,3 +11,19 @@ export interface Bins {
     complaintList:Complaints[]
     roots:Roots
 }
+
+export interface BinsCreate {
+    location:string
+    capacity:number
+    location_latitude:number
+    location_longitude:number
+}
+
+export interface BinsDTO {
+    id:number
+    last_maintenance:Date
+    location:string
+    capacity:number
+    location_latitude:number
+    location_longitude:number
+}

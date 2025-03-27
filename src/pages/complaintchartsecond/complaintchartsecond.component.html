@@ -1,0 +1,24 @@
+<div class="h-full w-full bg-white rounded-2xl p-3 border flex-col flex gap-3">
+    <div class="flex items-center justify-between">
+        <h3 class="text-base font-medium text-gray-700">Complaints Resolve Rate</h3>
+        <ng-icon class="text-xl cursor-pointer" routerLink="Inbox/tasks" name="matKeyboardArrowRight"></ng-icon>
+    </div>
+    <div class="flex flex-col gap-2">
+         <p class="text-3xl font-bold">{{progress}}%</p>
+         <div class="w-full h-4 bg-gray-200 rounded-md"> 
+            <div
+        class="h-full rounded-md bg-green-500"
+        [style.width.%]="progress"
+      ></div>
+         </div>
+         @if (progress > 70) {
+            <p class="text-sm text-gray-500">Almost all assigned Complaints resolved on time.</p>
+         }
+         @else if (progress >= 40 && progress <=60) {
+            <p class="text-sm text-gray-500">Almost half of assigned Complaints are resolved.</p>
+         }
+         @else if (progress == 0) {
+            <p class="text-sm text-gray-500">{{total}} Complaints not resolved.</p>
+         }
+    </div>
+</div>

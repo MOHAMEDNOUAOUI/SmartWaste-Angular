@@ -14,7 +14,7 @@ import { Bins } from '../../app/core/Models/Bins.modules';
 export class MapComponentForComplaintsComponent implements OnInit, OnDestroy {
   map: any;
   userMarker: any;
-  private zoomLevel: number = 17; // Ensure a zoomed-in view on the driver
+  private zoomLevel: number = 17;
 
   private DriverIcon = L.icon({
     iconUrl: 'garbageTruck.png',
@@ -43,7 +43,6 @@ export class MapComponentForComplaintsComponent implements OnInit, OnDestroy {
       }
     });
   
-    // Add new markers
     bins.forEach((bin) => {
       L.marker([bin.location_latitude, bin.location_longitude], { draggable: false }).addTo(this.map);
     });
@@ -60,13 +59,13 @@ export class MapComponentForComplaintsComponent implements OnInit, OnDestroy {
         },
         () => {
           console.error("Could not get user location, setting default position.");
-          this.initMap(51.505, -0.09); // Default location
+          this.initMap(51.505, -0.09);
         },
         { enableHighAccuracy: true, timeout: 10000 }
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
-      this.initMap(51.505, -0.09); // Default location
+      this.initMap(51.505, -0.09);
     }
   }
 
@@ -75,11 +74,16 @@ export class MapComponentForComplaintsComponent implements OnInit, OnDestroy {
       if (!this.map) {
         this.map = L.map('map').setView([lat, lng], this.zoomLevel);
   
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(this.map);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
   
         this.userMarker = L.marker([lat, lng], { draggable: false, icon: this.DriverIcon }).addTo(this.map);
+        L.circle([lat,lng] , {
+          radius:10000,
+          color:'blue',
+          fillOpacity:0.2
+        }).addTo(this.map);
+
+
       }
     }, 0);
   }

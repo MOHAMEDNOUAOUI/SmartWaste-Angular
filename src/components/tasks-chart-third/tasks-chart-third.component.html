@@ -1,0 +1,26 @@
+<div class="h-full w-full bg-white rounded-2xl p-3 border flex-col flex gap-3">
+    <div class="flex items-center justify-between">
+      <h3 class="text-base font-medium text-gray-700">something here</h3>
+      <ng-icon class="text-xl cursor-pointer" routerLink="Inbox/tasks" name="matKeyboardArrowRight"></ng-icon>
+    </div>
+  
+    <div>
+      <div class="relative w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center text-white">
+    
+        <!-- Workers Progress (Green) -->
+        <div class="absolute top-0 left-0 w-full h-full rounded-full bg-green-400 border-white"
+     *ngIf="progressWorkers$ | async as progressWorkers"
+     [style.clipPath]="getClipPath(progressWorkers)">
+</div>
+   
+        <div class="w-full h-full rounded-full bg-gray-200" *ngIf="total$ | async as total">
+        </div>
+        
+
+        <div class="h-4/5 w-4/5 bg-white absolute rounded-full flex items-center justify-center text-black">
+          <p class="font-semibold text-lg"><span class="text-sm text-lightgreen">%</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

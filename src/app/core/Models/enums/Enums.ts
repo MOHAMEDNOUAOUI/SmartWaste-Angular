@@ -1,7 +1,7 @@
 export enum Role {
-    ROLE_ADMIN,
-    ROLE_USER,
-    ROLE_WORKER
+    ROLE_ADMIN = "ROLE_ADMIN",
+    ROLE_USER = "ROLE_USER",
+    ROLE_WORKER = "ROLE_WORKER"
 }
 export enum TaskStatut {
     To_DO = 'To_DO',
@@ -12,8 +12,8 @@ export enum TaskStatut {
 }
 
 export enum TaskType {
-    CLEANUP,
-    MAINTENANCE
+    CLEANUP = 'CLEANUP',
+    MAINTENANCE = 'MAINTENANCE'
 }
 
 export enum StatusComplaint {

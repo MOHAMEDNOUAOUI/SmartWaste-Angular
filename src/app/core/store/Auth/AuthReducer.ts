@@ -4,12 +4,11 @@ import {ClearError, ClearState, LoadToken, LoadTokenFailure, LoadTokenSuccess, L
 
 export interface LoginResponse {
     token:string
-    refreshToken:string
 }
 
 export interface AuthState {
     loading:boolean
-    data:LoginResponse | null
+    data:string | null
     error:Error | null
 }
 

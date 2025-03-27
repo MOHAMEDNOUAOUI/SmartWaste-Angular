@@ -21,8 +21,7 @@ export class FormRegisterComponent {
     this.registerForm = this.fromBuilder.group({
       username:['' , [Validators.required , Validators.minLength(2) , Validators.maxLength(20)]],
       email:['' , [Validators.required , Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      rrole:['ROLE_WORKER']
+      password: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
 

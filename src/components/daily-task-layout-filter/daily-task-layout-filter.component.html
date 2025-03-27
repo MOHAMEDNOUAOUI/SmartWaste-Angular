@@ -3,12 +3,17 @@
    <div class="flex items-center gap-2">
       <div class="border p-2 border-r-gray-400 rounded-lg flex items-center gap-1">
         <ng-icon name="matSearchOutline" class="text-lg text-gray-400"></ng-icon>
-        <input type="text" placeholder="Search task..." class="w-fit focus:outline-none" name="" id="">
+        <input type="text" placeholder="Search task..." class="w-fit bg-transparent text-black focus:outline-none" name="" id="">
    </div> 
-   <div class="bg-white p-2 px-3 flex items-center gap-1 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 transform duration-200">
+   <div class="bg-white p-2 px-3 flex items-center gap-1 border text-gray-500 border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 transform duration-200">
       <ng-icon name="matFilterListOutline"></ng-icon>
       <p>Filter</p>
    </div>
+   <div *ngIf="isAdmin" (click)="open()" class="bg-white p-2 px-3 flex items-center gap-1 border text-gray-500 border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 transform duration-200">
+      <ng-icon name="matFilterListOutline"></ng-icon>
+      <p >Create</p>
    </div>
-  
+   </div>
 </div>
+
+<app-create-task-component (close)="close()" *ngIf="isTasks"></app-create-task-component>

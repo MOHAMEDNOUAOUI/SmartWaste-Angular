@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(private store:Store){}
 
   ngOnInit() : void {
-    this.store.dispatch(LoadAuthenticatedUser());
+    
   }
 
 }

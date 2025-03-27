@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AuthService } from "../Auth/AuthService";
 import { Store } from "@ngrx/store";
-import { DeleteClient, DeleteClientFailure, DeleteClientSuccess, DeleteWorker, DeleteWorkerFailure, DeleteWorkerSuccess, LoadAllClients, LoadAllClientsFailure, LoadAllClientsSuccess, LoadAllWorkers, LoadAllWorkersFailure, LoadAllWorkersSuccess, LoadAuthenticatedUser, LoadAuthenticatedUserFailure, LoadAuthenticatedUserSuccess } from "./UserActions";
+import { DeleteClient, DeleteClientFailure, DeleteClientSuccess, DeleteWorker, DeleteWorkerFailure, DeleteWorkerSuccess, Hire, HireSuccess, LoadAllClients, LoadAllClientsFailure, LoadAllClientsSuccess, LoadAllWorkers, LoadAllWorkersFailure, LoadAllWorkersSuccess, LoadAuthenticatedUser, LoadAuthenticatedUserFailure, LoadAuthenticatedUserSuccess } from "./UserActions";
 import { catchError, map, of, switchMap, tap, withLatestFrom } from "rxjs";
 import { UserService } from "./UserService";
 import Swal from "sweetalert2";
@@ -32,11 +32,10 @@ export class UserEffect{
       ofType(LoadAllClients),
       switchMap(() =>
         this.userService.getAllClient().pipe(
-          tap(response => console.log("API Response:", response)), // Debugging
           map(response =>
             LoadAllClientsSuccess({
               Clients: response.content,
-              pagination: response.pagination,
+              pageable: response.pagination,
             })
           ),
           catchError(error => {
@@ -53,7 +52,7 @@ export class UserEffect{
     () => this.action$.pipe(
       ofType(LoadAllWorkers),
       switchMap(() => this.userService.getAllWorkers().pipe(
-        map((response) => LoadAllWorkersSuccess({Workers:response.content,pagination:response.pagination})),
+        map((response) => LoadAllWorkersSuccess({Workers:response.content,pageable:response.pagination})),
         catchError((error) => of(LoadAllWorkersFailure({error:error.message})))
       ))
     )
@@ -105,5 +104,22 @@ export class UserEffect{
   
   
 
- 
+ $Hire = createEffect(
+  () => this.action$.pipe(
+    ofType(Hire),
+    withLatestFrom(
+      this.store.select(AllWorkers),
+      this.store.select(AllClients)
+    ),
+    switchMap(([action , AllWorkers , AllClients]) => this.userService.Hire(action.client.id).pipe(
+      map((response) => {
+        const updatedWorkers = [...(AllWorkers ?? []) , response];
+        const UpdatedClients = (AllClients ?? [])?.filter(client => client.id !== action.client.id)
+        return HireSuccess({Clients:UpdatedClients , Workers:updatedWorkers});
+      })
+    ))
+  )
+ )
+
+
 }

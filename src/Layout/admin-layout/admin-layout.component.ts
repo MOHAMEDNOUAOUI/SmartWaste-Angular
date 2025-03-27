@@ -8,10 +8,11 @@ import {matWork , matError , matAssignment} from '@ng-icons/material-icons/basel
 import { Store } from '@ngrx/store';
 import { LoadAuthenticatedUser } from '../../app/core/store/Utilisateur/UserActions';
 import { LoadToken } from '../../app/core/store/Auth/AuthActions';
+import { DashboardTopPanelComponent } from "../../shared/dashboard-top-panel/dashboard-top-panel.component";
 
 @Component({
   selector: 'app-admin-layout',
-  imports: [DashboardWorkerPanelComponent , RouterOutlet],
+  imports: [DashboardWorkerPanelComponent, RouterOutlet, DashboardTopPanelComponent],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css',
   viewProviders:[provideIcons({heroHome , matAssignment , matError , matWork , heroInbox , heroBellAlert , matNotificationsActiveOutline , heroUserGroup , heroTruck , heroArrowLeftStartOnRectangle , heroQuestionMarkCircle})]

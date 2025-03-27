@@ -1,4 +1,4 @@
-import { Bins } from "./Bins.modules"
+import { Bins, BinsDTO } from "./Bins.modules"
 import { StatusComplaint } from "./enums/Enums"
 import { Medias } from "./media.modules"
 import { Utilisateur } from "./Utilisateur.modules"
@@ -26,4 +26,15 @@ export interface ComplaintsDTO{
     status:StatusComplaint
     mediaList:Medias
     bins:Bins
+}
+
+export interface ComplaintsCreateDTO {
+    description: string;
+    priority: number;
+    comment: string;
+    bin: number;
+    client_id: number;
+    created_at?: Date;
+    status?: StatusComplaint;
+    files?: File[];
 }

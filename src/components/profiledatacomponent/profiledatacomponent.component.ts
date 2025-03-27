@@ -3,6 +3,10 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import {bootstrapBack} from '@ng-icons/bootstrap-icons'
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Store } from '@ngrx/store';
+import { User } from '../../app/core/store/Utilisateur/UserSelector';
+import { Observable } from 'rxjs';
+import { Utilisateur } from '../../app/core/Models/Utilisateur.modules';
 
 @Component({
   selector: 'app-profiledatacomponent',
@@ -11,6 +15,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './profiledatacomponent.component.css',
   viewProviders:[provideIcons({bootstrapBack})],
 })
-export class ProfiledatacomponentComponent {
-  constructor(private ActiveRoute:ActivatedRoute , public router:Router){}
+export class ProfiledatacomponentComponent{
+  constructor(private ActiveRoute:ActivatedRoute , public router:Router , private store:Store){}
+  user$!:Observable<Utilisateur | null>;
+  ngAfterContentInit() :void {
+    this.user$ = this.store.select(User);
+  }
 }

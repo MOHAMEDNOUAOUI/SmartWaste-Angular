@@ -19,3 +19,11 @@ export interface VehiculeDTO {
     location_latitude:number
     assignedWorker:Utilisateur
 }
+
+export interface VehiculeCreateDTO {
+    vehicule_number:string
+    capacity:string
+    location_longitude:number
+    location_latitude:number
+    worker_id:number
+}

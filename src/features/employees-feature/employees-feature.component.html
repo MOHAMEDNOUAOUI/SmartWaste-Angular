@@ -98,7 +98,9 @@
                         {{worker.vehiculeList.length}}
                     </td>
                     <td class="px-6 py-4 flex gap-2 w-32">
-                        <button (click)="deleteEmployee(worker)" class="border border-gray-300  text-gray-500 px-3 rounded hover:bg-white transition duration-300">Delete</button>
+                        <p-toast />
+                        <p-confirmpopup />
+                        <p-button (onClick)="deleteEmployee($event , worker)" label="Delete" severity="danger" [outlined]="true" />
                     </td>
                 </tr>
             </tbody>

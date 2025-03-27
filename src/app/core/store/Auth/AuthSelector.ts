@@ -8,9 +8,5 @@ export const authError = createSelector(
 )
 export const Token = createSelector(
     authstate,
-    (state:AuthState) => state.data?.token || null
-)
-export const RefreshToken = createSelector(
-    authstate,
-    (state:AuthState) => state.data?.refreshToken || null
+    (state:AuthState) => state.data || null
 )

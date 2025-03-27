@@ -6,6 +6,8 @@ import { Token } from "../Auth/AuthSelector";
 import { env } from "../../../../env";
 import { Task } from "../../Models/Task.modules";
 import { AuthService } from "../Auth/AuthService";
+import { Pagination } from "../Utilisateur/UserReducer";
+import { FormGroup } from "@angular/forms";
 
 @Injectable({
     providedIn:'root'
@@ -23,5 +25,12 @@ export class TaskService {
         return this.http.put<Task>(`${this.url}/task/updateStatut/${task.taskStatus}/${task.id}`, null);
     }
     
+    getTasks() : Observable<{content:Task[] , pageable:Pagination}> {
+        return this.http.get<{content:Task[] , pageable:Pagination}>(`${this.url}/task`);
+    }
+
+    createTask(task:FormGroup) : Observable<Task> {
+        return this.http.post<Task>(`${this.url}/task` , task);
+    }
 
 }

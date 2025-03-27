@@ -1,0 +1,129 @@
+<div class="glass w-screen h-screen fixed left-0 top-0 z-[1000] font-Inter">
+    <div class="w-1/3 h-full shadow-lg absolute bg-white right-0 top-0 p-3 overflow-auto">
+      <div class="text-black cursor-pointer flex justify-between items-center">
+        <h1 class="text-xl font-medium">Create Route</h1>
+        <div class="flex items-center justify-center p-1 rounded border text-xl" (click)="close.emit()">
+          <ng-icon name="matClose" class="text-xl"></ng-icon>
+        </div>
+      </div>
+    
+      <div class="mt-5">
+        <form [formGroup]="routeForm" (ngSubmit)="onSubmit()" class="space-y-4">
+          
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Distance (km)</label>
+            <input type="number" 
+                   step="0.1" 
+                   min="0" 
+                   formControlName="distance" 
+                   placeholder="Enter distance in kilometers"
+                   class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <span *ngIf="routeForm.get('distance')?.errors?.['required'] && routeForm.get('distance')?.touched" 
+                  class="text-sm text-red-500">Distance is required</span>
+            <span *ngIf="routeForm.get('distance')?.errors?.['min']" 
+                  class="text-sm text-red-500">Distance must be greater than 0</span>
+          </div>
+
+        
+          <div class="space-y-2">
+            <label class="block text-sm font-medium text-gray-700">Select Vehicle</label>
+            <select formControlName="vehicleId" *ngIf="vehicules$ | async as vehicules"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">Select a vehicle</option>
+              <option *ngFor="let vehicle of vehicules" [value]="vehicle.id">
+                {{vehicle.vehicule_number}}
+              </option>
+            </select>
+            <span *ngIf="routeForm.get('vehicleId')?.errors?.['required'] && routeForm.get('vehicleId')?.touched" 
+                  class="text-sm text-red-500">Vehicle selection is required</span>
+          </div>
+
+          
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700">Start Time</label>
+              <input type="datetime-local" formControlName="start_time"
+                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <span *ngIf="routeForm.get('start_time')?.errors?.['required'] && routeForm.get('start_time')?.touched" 
+                    class="text-sm text-red-500">Start time is required</span>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700">End Time</label>
+              <input type="datetime-local" formControlName="end_time"
+                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <span *ngIf="routeForm.get('end_time')?.errors?.['required'] && routeForm.get('end_time')?.touched" 
+                    class="text-sm text-red-500">End time is required</span>
+              <span *ngIf="routeForm.get('end_time')?.errors?.['invalidRange']" 
+                    class="text-sm text-red-500">End time must be after start time</span>
+            </div>
+          </div>
+          <div id="map" class="h-[300px] w-full rounded-lg shadow-md"></div>
+
+
+          <div class="space-y-4">
+            <div class="flex justify-between items-center">
+              <h2 class="text-lg font-medium">Bins</h2>
+              <button type="button" (click)="addBin()"
+                      class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                Add Bin
+              </button>
+            </div>
+
+            <div formArrayName="bins" class="space-y-4">
+              <div *ngFor="let bin of bins.controls; let i=index" [formGroupName]="i"
+                   class="p-4 border border-gray-200 rounded-md space-y-3"
+                   [class.border-blue-500]="selectedBinIndex === i">
+                <div class="flex justify-between items-center">
+                  <h3 class="font-medium">Bin {{i + 1}}</h3>
+                  <div class="flex gap-2">
+                    <button type="button" (click)="selectBinLocation(i)"
+                            class="text-blue-500 hover:text-blue-700">Set Location</button>
+                    <button type="button" (click)="removeBin(i)"
+                            class="text-red-500 hover:text-red-700">Remove</button>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Location Name</label>
+                    <input type="text" formControlName="location"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                  </div>
+
+                  <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Capacity</label>
+                    <input type="number" formControlName="capacity"
+                           class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                  </div>
+
+                  <input type="hidden" formControlName="location_latitude">
+                  <input type="hidden" formControlName="location_longitude">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" 
+                  class="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:bg-gray-400"
+                  [disabled]="!routeForm.valid">
+            Create Route
+          </button>
+
+
+          <div *ngIf="!routeForm.valid" class="mt-4 p-3 bg-red-50 border border-red-200 rounded-md">
+            <h3 class="font-medium text-red-800">Please complete the following:</h3>
+            <ul class="mt-2 list-disc list-inside text-sm text-red-700">
+              <li *ngIf="routeForm.get('distance')?.errors">Enter a valid distance</li>
+              <li *ngIf="routeForm.get('vehicleId')?.errors">Select a vehicle</li>
+              <li *ngIf="routeForm.get('start_time')?.errors">Select a start time</li>
+              <li *ngIf="routeForm.get('end_time')?.errors">
+                {{ routeForm.get('end_time')?.errors?.['invalidRange'] ? 'End time must be after start time' : 'Select an end time' }}
+              </li>
+              <li *ngIf="bins.length === 0">Add at least one bin</li>
+              <li *ngIf="hasBinErrors()">Complete all bin information (location, capacity, and map location)</li>
+            </ul>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>      
